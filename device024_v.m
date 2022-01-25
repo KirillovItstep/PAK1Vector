@@ -1,0 +1,15 @@
+cd(fullfile(fileparts(which('device024_v.m')), '../'));
+r1=38; r2=40.5; w1=0.3; r3=42; w2=0.7; k1=3.8;
+im=imreadCorel('Images/eac.bmp'); [h,w,d]=sizeCorel(im); imagescCorel(21*px+w/2,9.5*px+h/2,im);
+im=imreadCorel('Images/stb.bmp'); [h,w,d]=sizeCorel(im); imagescCorel(16*px+w/2,9.5*px+h/2,im);
+im=imreadCorel('Images/logo_vzep.bmp'); [h,w,d]=sizeCorel(im); imagescCorel(54*px-w/2,10.5*px+h/2,im);
+im=imreadCorel('Images/ep.bmp'); [h,w,d]=sizeCorel(im); imagescCorel(4.5*px+w/2,7*px+h/2,im);
+im=imreadCorel('Images/star2.bmp'); [h,w,d]=sizeCorel(im); imagescCorel(6.5*px+w/2,7*px+h/2,im);
+im=imreadCorel('Images/measure.bmp'); [h,w,d]=sizeCorel(im); imagescCorel(4.5*px+w/2,10*px+h/2,im);
+format='mmyy'; k=datestr(now,format); k(3)='2';k(4)='1'; textCorel(55*px,10.5*px,k,'FontName',getGostFont(),'FontSize',2*px*1.33*k1,'VerticalAlignment','baseline','HorizontalAlignment','left');
+textCorel(36*px,12.5*px,'50;180-550Hz','FontName',getGostFont(),'FontSize',1.6*px*1.33*k1,'VerticalAlignment','baseline','HorizontalAlignment','center');
+textCorel(36*px,21*px,'A','FontName',getGostFont(),'FontSize',6*px*k1,'VerticalAlignment','baseline','HorizontalAlignment','center');
+textCorel(55*px,13.5*px,'Ý8030-Ì1','FontName',getGostFont(),'FontSize',1.2*px*1.33*k1,'VerticalAlignment','baseline','HorizontalAlignment','left');
+im=imreadCorel('Images/circle2.bmp'); [h,w,d]=sizeCorel(im); imagescCorel(12.4*px+w/2,8.9*px-h/2,im); imagescCorel(57.4*px+w/2,8.9*px-h/2,im);
+rectangleCorel('Position',[0.1,0.1,71.9,51.9]*px,'LineWidth',0.1);
+lineCorel([29,31.2]*px,[12,12]*px,'LineWidth',0.25*px,'Color',[0 0 0]); lineCorel([32.2,40.8]*px,[12,12]*px,'LineWidth',0.25*px,'Color',[0 0 0]);

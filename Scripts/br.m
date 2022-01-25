@@ -1,0 +1,14 @@
+r1=38; r2=40.5; w1=0.3; r3=42; w2=0.7;
+im=imread('Images/eac.bmp'); [h,w,d]=size(im); imagesc(21*px,imd.HeightPx-9.5*px-h,im);
+im=imread('Images/stb.bmp'); [h,w,d]=size(im); imagesc(16*px,imd.HeightPx-9.5*px-h,im);
+im=imread('Images/logo_vzep.bmp'); [h,w,d]=size(im); imagesc(54*px-w,imd.HeightPx-10.5*px-h,im);
+im=imread('Images/ep.bmp'); [h,w,d]=size(im); imagesc(4.5*px,imd.HeightPx-7*px-h,im);
+im=imread('Images/star2.bmp'); [h,w,d]=size(im); imagesc(6.5*px,imd.HeightPx-7*px-h,im);
+im=imread('Images/measure.bmp'); [h,w,d]=size(im); imagesc(4.5*px,imd.HeightPx-10*px-h,im);
+format='mmyy'; k=datestr(now,format);text(55*px,imd.HeightPx-10.5*px,k,'FontName','GOST 26.008—85','FontSize',2*px*1.33,'VerticalAlignment','baseline');
+text(36*px,imd.HeightPx-12.5*px,'50;180-550Hz','FontName','GOST 26.008—85','FontSize',1.6*px*1.33,'VerticalAlignment','baseline','HorizontalAlignment','center');
+text(36*px,imd.HeightPx-21*px,'x10mA','FontName','GOST 26.008—85','FontSize',6*px,'VerticalAlignment','baseline','HorizontalAlignment','center');
+text(55*px,imd.HeightPx-13.5*px,'Ý8030-Ì1','FontName','GOST 26.008—85','FontSize',2*px*1.33,'VerticalAlignment','baseline');
+im=imread('Images/circle2.bmp'); [h,w,d]=size(im); imagesc(12.4*px,imd.HeightPx-8.9*px,im); imagesc(57.4*px,imd.HeightPx-8.9*px,im);
+rectangle('Position',[0.1,0.1,71.9,51.9]*px,'LineWidth',3);
+line([29,31.2]*px,imd.HeightPx-[12,12]*px,'LineWidth',0.25*px,'Color',[0 0 0]); line([32.2,40.8]*px,imd.HeightPx-[12,12]*px,'LineWidth',0.25*px,'Color',[0 0 0]);

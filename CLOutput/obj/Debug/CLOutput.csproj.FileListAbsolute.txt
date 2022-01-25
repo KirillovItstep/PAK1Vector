@@ -1,0 +1,4 @@
+C:\Users\Kirillov\Documents\Dial\CLOutput\bin\Debug\CLOutput.dll
+C:\Users\Kirillov\Documents\Dial\CLOutput\obj\Debug\CLOutput.dll
+C:\Users\Kirillov\Documents\Dial\CLOutput\obj\Debug\CLOutput.pdb
+C:\Users\Kirillov\Documents\Dial\CLOutput\bin\Debug\CLOutput.pdb
