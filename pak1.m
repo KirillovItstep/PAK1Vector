@@ -10,7 +10,7 @@ ratio=SCRsize(4)/SCRsize(3);
 fmain = figure...    
     ('Color'            , [0.9 0.9 0.9],...
     'NumberTitle'       ,'off', ...
-    'Name'              ,'Шкала прибора Э8030-М1 (ПАК-1)',...
+    'Name'              ,'РЁРєР°Р»Р° РїСЂРёР±РѕСЂР° Р­8030-Рњ1 (РџРђРљ-1)',...
     'Tag'               ,'fmain',...    
     'Units'             ,'normalized',...
     'Outerposition'     ,[0 0 1 1],...
@@ -18,31 +18,31 @@ fmain = figure...
     'MenuBar'           ,'none');
 
 % Create the parent menu
-menu = uimenu(fmain,'Label','Шкала'); 
+menu = uimenu(fmain,'Label','РЁРєР°Р»Р°'); 
 % Create the submenus
-smenu1 = uimenu(menu,'Label','Выбор шкалы',...
+smenu1 = uimenu(menu,'Label','Р’С‹Р±РѕСЂ С€РєР°Р»С‹',...
                'Callback',{@choiceScale});
-smenu12 = uimenu(menu,'Label','Задать номер',...
+smenu12 = uimenu(menu,'Label','Р—Р°РґР°С‚СЊ РЅРѕРјРµСЂ',...
                'Callback',{@setNumber});
-menu2 = uimenu(fmain,'Label','Сохранить'); 
+menu2 = uimenu(fmain,'Label','РЎРѕС…СЂР°РЅРёС‚СЊ'); 
 % Create the submenus
-smenu2 = uimenu(menu2,'Label','Сохранить в CorelDraw',...
+smenu2 = uimenu(menu2,'Label','РЎРѕС…СЂР°РЅРёС‚СЊ РІ CorelDraw',...
                'Callback',{@bsaveCorel});
            
 %choiceScale;
 %Container for a camera
 CameraAxes=axes('Parent',fmain,'Position',[0.01 1-0.5-0.01 0.67*ratio 0.5]);
-statusbar(fmain, 'Проверка готовности...');  
+statusbar(fmain, 'РџСЂРѕРІРµСЂРєР° РіРѕС‚РѕРІРЅРѕСЃС‚Рё...');  
 %Message about the choice of device
 %szfmain=get(fmain,'Position');
 sdev=getScale();
 %{
-ChoiceDev = uicontrol('Parent',fmain,'Style', 'text', 'FontSize',14,'String',['Выбрана шкала: ',sdev],...
+ChoiceDev = uicontrol('Parent',fmain,'Style', 'text', 'FontSize',14,'String',['Р’С‹Р±СЂР°РЅР° С€РєР°Р»Р°: ',sdev],...
      'Units','normalized','Position', [0.7 szfmain(4)-0.01 0.25 0.03],'BackgroundColor',[0.9 1 0.9],'HorizontalAlignment','left');   
 %}
 %Panel with messages
 panel=Panel(fmain);
-BRun = uicontrol('Parent',fmain,'Style', 'pushbutton', 'FontSize',16,'String','Пуск',...
+BRun = uicontrol('Parent',fmain,'Style', 'pushbutton', 'FontSize',16,'String','РџСѓСЃРє',...
      'Units','normalized','Position', [0.4 0.1 0.2 0.1],'Callback',{@brun});     
 %Delete all video objects
 
@@ -66,11 +66,11 @@ triggerconfig(video,'manual');
 video.FramesPerTrigger=10;
 start(video);
 catch exception
-panel.addMessage('Камера не работает!',[0.9 0.4 0.7]);
+panel.addMessage('РљР°РјРµСЂР° РЅРµ СЂР°Р±РѕС‚Р°РµС‚!',[0.9 0.4 0.7]);
 end
-panel.addMessage(['Выбрана шкала ' sdev],[0.6 0.9 0.6]);
-panel.addMessage('Режим калибратора должен быть "Стоп"',[0.1 0.7 0.9]);
-panel.addMessage('Установите прибор и нажмите кнопку "Пуск"',[0.6 0.9 0.6]);
+panel.addMessage(['Р’С‹Р±СЂР°РЅР° С€РєР°Р»Р° ' sdev],[0.6 0.9 0.6]);
+panel.addMessage('Р РµР¶РёРј РєР°Р»РёР±СЂР°С‚РѕСЂР° РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ "РЎС‚РѕРї"',[0.1 0.7 0.9]);
+panel.addMessage('РЈСЃС‚Р°РЅРѕРІРёС‚Рµ РїСЂРёР±РѕСЂ Рё РЅР°Р¶РјРёС‚Рµ РєРЅРѕРїРєСѓ "РџСѓСЃРє"',[0.6 0.9 0.6]);
 isinit=false; %If an initialization of calibrator already runned
 ismax=false;
 end
@@ -91,24 +91,24 @@ fchoice = figure(...
     'MenuBar','none',...
     'color', [0.9 0.9 0.9],...
     'PaperPositionMode','auto',...
-    'Name','Шкала->Выбор шкалы',...    
+    'Name','РЁРєР°Р»Р°->Р’С‹Р±РѕСЂ С€РєР°Р»С‹',...    
     'Tag','gui',...
     'Resize','off',...
     'WindowStyle','modal');
-    LNumber = uicontrol('Parent',fchoice,'Style', 'text', 'FontSize',16,'String','Номер шкалы:',...
+    LNumber = uicontrol('Parent',fchoice,'Style', 'text', 'FontSize',16,'String','РќРѕРјРµСЂ С€РєР°Р»С‹:',...
      'Position', [20 sz(1)-50 200 40],'BackgroundColor',[0.9 0.9 0.9]);   
     ENumber = uicontrol('Parent',fchoice,'Style', 'edit', 'FontSize',16,'String',sdev,...
      'Position', [20 sz(1)-100 200 50]);
     BNumber = uicontrol('Parent',fchoice,'Style', 'pushbutton', 'FontSize',16,'String','OK',...
      'Position', [230 sz(1)-100 200 50],'Enable','off','Callback',{@bchoiceScale});
-    LLevels = uicontrol('Parent',fchoice,'Style', 'text', 'FontSize',10,'String','Выдаваемые уровни сигнала:',...
+    LLevels = uicontrol('Parent',fchoice,'Style', 'text', 'FontSize',10,'String','Р’С‹РґР°РІР°РµРјС‹Рµ СѓСЂРѕРІРЅРё СЃРёРіРЅР°Р»Р°:',...
      'Position', [470 sz(1)-250 300 120],'BackgroundColor',[0.9 0.9 0.9]);
-    if (~ismax) maxmessage='Задать максимум';
-    else maxmessage='Задать ноль';
+    if (~ismax) maxmessage='Р—Р°РґР°С‚СЊ РјР°РєСЃРёРјСѓРј';
+    else maxmessage='Р—Р°РґР°С‚СЊ РЅРѕР»СЊ';
     end
     BMaxMin = uicontrol('Parent',fchoice,'Style', 'pushbutton', 'FontSize',16,'String',maxmessage,...
      'Position', [450 sz(1)-100 300 50],'Callback',{@bcmaxmin});   
-SText=['Выбрана шкала: ',sdev];
+SText=['Р’С‹Р±СЂР°РЅР° С€РєР°Р»Р°: ',sdev];
 statusbar(fchoice, SText);
 bchoiceScale(hObject, eventdata);
 set(BNumber,'Enable','on'); 
@@ -125,7 +125,7 @@ try
     mode=getModeR(device); 
     imscale(sdev);
 catch exception
-    statusbar(fchoice, 'Шкалы с таким номером нет');  
+    statusbar(fchoice, 'РЁРєР°Р»С‹ СЃ С‚Р°РєРёРј РЅРѕРјРµСЂРѕРј РЅРµС‚');  
     return;
 end
     axis off;   
@@ -134,15 +134,15 @@ end
     axes(ChoiceAxes);
     im=imread('scale_o.jpg');
     imshow(im);
-    SText=['Выбрана шкала: ',sdev];
+    SText=['Р’С‹Р±СЂР°РЅР° С€РєР°Р»Р°: ',sdev];
 statusbar(fchoice, SText);
 %Save the scale's number to ini-file
 writeKeys = {'Scale','number','name',sdev};
 inifile('settings.ini','write',writeKeys,'plain');
-panel.addMessage(['Выбрана шкала ' sdev],[0.6 0.9 0.6]);
+panel.addMessage(['Р’С‹Р±СЂР°РЅР° С€РєР°Р»Р° ' sdev],[0.6 0.9 0.6]);
 scale1=mode{2};
 params=getParams(scale1);
-lstring=strcat('Выдаваемые уровни сигнала:',params{2});
+lstring=strcat('Р’С‹РґР°РІР°РµРјС‹Рµ СѓСЂРѕРІРЅРё СЃРёРіРЅР°Р»Р°:',params{2});
 set(LLevels,'String',lstring);
 isinit=false;
 %levels=regexp(params{2}, ' ', 'split')
@@ -151,7 +151,7 @@ end
 
 function setNumber(hObject, eventdata)
 global SNumber fsetNumber;
-%5-значный номер???
+%5-Р·РЅР°С‡РЅС‹Р№ РЅРѕРјРµСЂ???
 readKeys = {'device35','number','name'};
 readSet = inifile('settings.ini','read',readKeys); 
 n=str2num(readSet{1}); 
@@ -160,7 +160,7 @@ s=int2str(n);
 fsetNumber = figure...    
     ('Color'            , [0.9 0.9 0.9],...
     'NumberTitle'       ,'off', ...
-    'Name'              ,'Шкала->Задать номер',...
+    'Name'              ,'РЁРєР°Р»Р°->Р—Р°РґР°С‚СЊ РЅРѕРјРµСЂ',...
     'Tag'               ,'fmain',...    
     'Units'             ,'normalized',...
     'Outerposition'     ,[0.4 0.4 0.3 0.25],...
@@ -175,7 +175,7 @@ end
 
 function bSaveNumber(hObject, eventdata)
 global SNumber fsetNumber;
-%5-значный номер
+%5-Р·РЅР°С‡РЅС‹Р№ РЅРѕРјРµСЂ
 s = get(SNumber,'String');
 czeros=5-length(s);
 for i=1:1:czeros 
@@ -188,10 +188,15 @@ end
 
 function bcmaxmin(hObject, eventdata)
 %Maximal or minimal level of a signal
-global ismax isinit BMaxMin maxlevel mode;
+global ismax isinit BMaxMin maxlevel mode valueOrFreq;
 if (~isinit)
 % Init calibrator; output to com port mode set commands
 modes=regexp(mode{1}, ';', 'split');
+if modes{size(modes,2)}(1:1)=='F'
+    valueOrFreq = 'V';
+else valueOrFreq = 'F';
+end
+disp(valueOrFreq);
 for j=1:1:size(modes,2)
     OutputCom(modes{j});
 end
@@ -199,7 +204,7 @@ scale1=mode{2};
 % Read parameters of the first scale
 params=getParams(scale1);
 levels=regexp(params{2}, ' ', 'split');
-maxlevel=strcat('V',levels{params{1}});
+maxlevel=strcat(valueOrFreq,levels{params{1}});
 isinit=true;
 end
 if (~ismax)
@@ -210,8 +215,8 @@ else
     OutputCom('OPR');
     ismax=false;
 end
-    if (~ismax) maxmessage='Задать максимум';
-    else maxmessage='Задать ноль';
+    if (~ismax) maxmessage='Р—Р°РґР°С‚СЊ РјР°РєСЃРёРјСѓРј';
+    else maxmessage='Р—Р°РґР°С‚СЊ РЅРѕР»СЊ';
     end
 set(BMaxMin,'String',maxmessage);
 end
@@ -235,7 +240,7 @@ imd.saveToFile('scale_o');
 end
 
 function brun(hObject, eventdata)
-global video panel BRun ismax Angles alpha params;
+global video panel BRun ismax Angles alpha params valueOrFreq;
 
 if ismax
 OutputCom('OPR');
@@ -247,7 +252,7 @@ set(BRun,'Enable','off');
 rgb=getsnapshot(video); %imwrite(rgb,'res0.jpg'); return;
 box = cropScale(rgb);
 Index = 1;
-tdel=0; %Пауза для остановки стрелки, с
+tdel=0; %РџР°СѓР·Р° РґР»СЏ РѕСЃС‚Р°РЅРѕРІРєРё СЃС‚СЂРµР»РєРё, СЃ
 % Define mode, scale1, scale2 by device name
 %Read the scale's number from ini-file
 sdev = getScale();
@@ -273,7 +278,7 @@ params=getParams(scale1);
 % Get angle for the first signal
 %Put signal
 levels=regexp(params{2}, ' ', 'split');
-s=strcat('V',levels{2}); 
+s=strcat(valueOrFreq,levels{2}); 
 OutputCom(s);  
 OutputCom('OPR');
 pause(tdel);
@@ -285,7 +290,7 @@ if (Angle0-Angle1)>13
     params=getParams(scale2);
     %Put signal
     levels=regexp(params{2}, ' ','split');
-    s=strcat('V',levels{2}); 
+    s=strcat(valueOrFreq,levels{2}); 
     OutputCom(s);
     pause(tdel);
     Angle=getAngleVideo(video,im0,0);    
@@ -294,14 +299,14 @@ end
 %return;
 % Get angle for first signal
 
-% Провести измерения
+% РџСЂРѕРІРµСЃС‚Рё РёР·РјРµСЂРµРЅРёСЏ
 %Create marks
 markss=MarksR(params);
 Angles=zeros(1,markss.Count);
 Angles(1)=Angle0; Angles(2)=Angle1; 
 %Output to calibrator
 for i=3:1:markss.Count    
-    s=strcat('V',levels{i});
+    s=strcat(valueOrFreq,levels{i});
     OutputCom(s); 
     pause(tdel);
 Angle=getAngleVideo(video,box,0);    
@@ -311,19 +316,19 @@ Angles(i)=Angle;
 if Index<=markss.Count
 % Update handles structure
 if (strcmp(modes{1},'MIDC'))||(strcmp(modes{1},'MIAC'))
-    s=strcat({'Сила тока установлена на '},num2str(params{2}(i),2),' A');
+    s=strcat({'РЎРёР»Р° С‚РѕРєР° СѓСЃС‚Р°РЅРѕРІР»РµРЅР° РЅР° '},num2str(params{2}(i),2),' A');
 else
-    s=strcat({'Напряжение установлено на '},num2str(params{2}(i),2),' В');
+    s=strcat({'РќР°РїСЂСЏР¶РµРЅРёРµ СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ РЅР° '},num2str(params{2}(i),2),' Р’');
 end
 %set(handles.txt,'String',s);
 Index=Index+1;
 end
 end
-%Перевести на 0!
-s=strcat('V',levels{2});
+%РџРµСЂРµРІРµСЃС‚Рё РЅР° 0!
+s=strcat(valueOrFreq,levels{2});
 OutputCom(s);
 OutputCom('OPR');
-s=strcat({'Готово'}); 
+s=strcat({'Р“РѕС‚РѕРІРѕ'}); 
 
 %Output scale. Prepare creating an image
 imd=ImFigureDrawR(72,52); 
@@ -338,26 +343,26 @@ markss.Angles=(Angles+alpha)*pi/180;
 %Check angles
 Ang1=Angles(1)+alpha; Ang2=Angles(size(Angles,2))+alpha; dAng=Ang1-Ang2;
 if (Ang1<fi1min)||(Ang1>fi1max)
-    s=['Первый угол не входит ' num2str(Ang1,3)];
+    s=['РџРµСЂРІС‹Р№ СѓРіРѕР» РЅРµ РІС…РѕРґРёС‚ ' num2str(Ang1,3)];
     panel.addMessage(s,[0.9 0.4 0.7]);
 else 
-    s=['Первый угол входит ' num2str(Ang1,3)];
+    s=['РџРµСЂРІС‹Р№ СѓРіРѕР» РІС…РѕРґРёС‚ ' num2str(Ang1,3)];
     panel.addMessage(s,[0.9 0.4 0.7]);
 end
 
 if (Ang2<fi2min)||(Ang2>fi2max)
-    s=['Второй угол не входит ' num2str(Ang2,3)];
+    s=['Р’С‚РѕСЂРѕР№ СѓРіРѕР» РЅРµ РІС…РѕРґРёС‚ ' num2str(Ang2,3)];
     panel.addMessage(s,[0.9 0.4 0.7]);
 else 
-    s=['Второй угол входит ' num2str(Ang2,3)];
+    s=['Р’С‚РѕСЂРѕР№ СѓРіРѕР» РІС…РѕРґРёС‚ ' num2str(Ang2,3)];
     panel.addMessage(s,[0.6 0.9 0.6]);
 end
 
 if (dAng<fi3min)||(dAng>fi3max)
-    s=['Разность углов не входит ' num2str(dAng,3)];
+    s=['Р Р°Р·РЅРѕСЃС‚СЊ СѓРіР»РѕРІ РЅРµ РІС…РѕРґРёС‚ ' num2str(dAng,3)];
     panel.addMessage(s,[0.9 0.4 0.7]);
 else 
-    s=['Разность углов входит ' num2str(dAng,3)];
+    s=['Р Р°Р·РЅРѕСЃС‚СЊ СѓРіР»РѕРІ РІС…РѕРґРёС‚ ' num2str(dAng,3)];
     panel.addMessage(s,[0.6 0.9 0.6]);
 end
 
@@ -365,7 +370,7 @@ DrawScaleR(imd,device);
 markss.draw(imd);
 %delete('scale.jpg');
 imd.saveToFile('scale'); 
-panel.addMessage('Рисунок шкалы сформирован',[0.6 0.9 0.6]);
+panel.addMessage('Р РёСЃСѓРЅРѕРє С€РєР°Р»С‹ СЃС„РѕСЂРјРёСЂРѕРІР°РЅ',[0.6 0.9 0.6]);
 set(BRun,'Enable','on');
 showScale;
 end
@@ -386,12 +391,12 @@ fshow = figure(...
     'MenuBar','none',...
     'color', [0.9 0.9 0.9],...
     'PaperPositionMode','auto',...
-    'Name','Вид готовой шкалы',...
+    'Name','Р’РёРґ РіРѕС‚РѕРІРѕР№ С€РєР°Р»С‹',...
     'Tag','gui',...
     'Resize','off');    
-    %BNumber = uicontrol('Parent',fshow,'Style', 'pushbutton', 'FontSize',16,'String','Печать',...
+    %BNumber = uicontrol('Parent',fshow,'Style', 'pushbutton', 'FontSize',16,'String','РџРµС‡Р°С‚СЊ',...
      %'Position', [200 sz(1)-550 200 50],'Callback',{@bprint});
-    BSave = uicontrol('Parent',fshow,'Style', 'pushbutton', 'FontSize',16,'String','Сохранить',...
+    BSave = uicontrol('Parent',fshow,'Style', 'pushbutton', 'FontSize',16,'String','РЎРѕС…СЂР°РЅРёС‚СЊ',...
      'Position', [450 sz(1)-550 200 50],'Callback',{@bsave});
  
     ShowAxes=axes('Parent',fshow,'Position',[0.1 0.2 0.8 0.7]);
@@ -403,30 +408,30 @@ end
 function bsave(hObject, eventdata)
 %Run script for CorelDraw saving
 global fshow commands Angles alpha params;
-close(fshow); %Закрыть окно
+close(fshow); %Р—Р°РєСЂС‹С‚СЊ РѕРєРЅРѕ
 sdev = getScale();
 sdev
 
-%Сформировать имя файла для сохранения
+%РЎС„РѕСЂРјРёСЂРѕРІР°С‚СЊ РёРјСЏ С„Р°Р№Р»Р° РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ
 readKeys = {'Scale','id','name'}; 
 readSet = inifile('settings.ini','read',readKeys); 
 n=str2num(readSet{1}); 
 
 dial_root = fullfile(pwd);
-%Подключение библиотеки dll
+%РџРѕРґРєР»СЋС‡РµРЅРёРµ Р±РёР±Р»РёРѕС‚РµРєРё dll
 asm = NET.addAssembly(fullfile(dial_root, 'CLOutput\bin\Debug\CLOutput.dll'));
 
-%Создание списка команд
+%РЎРѕР·РґР°РЅРёРµ СЃРїРёСЃРєР° РєРѕРјР°РЅРґ
 commands = cell(1,1);
 
 path = fullfile(dial_root, 'Images\\');
-%Создание документа
+%РЎРѕР·РґР°РЅРёРµ РґРѕРєСѓРјРµРЅС‚Р°
 commands{end+1,1} = 'corelDraw = CLOutput.CorelDraw(false);';
 commands{end+1,1} = 'application = corelDraw.Application;';
 commands{end+1,1} = strcat('corelDraw.openDocument(''', fullfile(dial_root, 'Images\\sample.cdr'), ''');');
-commands{end+1,1} = 'drawer = CLOutput.Drawer(corelDraw);'; %Запускается только при наличии открытого документа
+commands{end+1,1} = 'drawer = CLOutput.Drawer(corelDraw);'; %Р—Р°РїСѓСЃРєР°РµС‚СЃСЏ С‚РѕР»СЊРєРѕ РїСЂРё РЅР°Р»РёС‡РёРё РѕС‚РєСЂС‹С‚РѕРіРѕ РґРѕРєСѓРјРµРЅС‚Р°
 
-%В формате cdr
+%Р’ С„РѕСЂРјР°С‚Рµ cdr
 device=strcat('device',sdev);
 mode=getModeV(device);
 
@@ -446,12 +451,12 @@ commands{end+1,1} = strcat('corelDraw.closeDocument();');
 commands{end+1,1} = strcat('corelDraw.closeDocument();');
 
 
-%Выполнение всех команд
+%Р’С‹РїРѕР»РЅРµРЅРёРµ РІСЃРµС… РєРѕРјР°РЅРґ
 commands = commands(~cellfun('isempty',commands));
 tic;
 
-% если 1 - печатаются все выполняемые команды, если 0 - только в случае
-% возникновения ошибки
+% РµСЃР»Рё 1 - РїРµС‡Р°С‚Р°СЋС‚СЃСЏ РІСЃРµ РІС‹РїРѕР»РЅСЏРµРјС‹Рµ РєРѕРјР°РЅРґС‹, РµСЃР»Рё 0 - С‚РѕР»СЊРєРѕ РІ СЃР»СѓС‡Р°Рµ
+% РІРѕР·РЅРёРєРЅРѕРІРµРЅРёСЏ РѕС€РёР±РєРё
 verbose_evaluating = 0;
 for i=1:1:size(commands,1)
     if verbose_evaluating 
@@ -471,7 +476,7 @@ end
 %disp(i);
 end
 toc;
-%Сохранение номера шкалы
+%РЎРѕС…СЂР°РЅРµРЅРёРµ РЅРѕРјРµСЂР° С€РєР°Р»С‹
 clear commands;
 incNumber;
 end
@@ -487,20 +492,20 @@ readSet = inifile('settings.ini','read',readKeys);
 n=str2num(readSet{1}); 
 
 dial_root = fullfile(pwd);
-%Подключение библиотеки dll
+%РџРѕРґРєР»СЋС‡РµРЅРёРµ Р±РёР±Р»РёРѕС‚РµРєРё dll
 asm = NET.addAssembly(fullfile(dial_root, 'CLOutput\bin\Debug\CLOutput.dll'));
 
-%Создание списка команд
+%РЎРѕР·РґР°РЅРёРµ СЃРїРёСЃРєР° РєРѕРјР°РЅРґ
 commands = cell(1,1);
 
 path = fullfile(dial_root, 'Images\\');
-%Создание документа
+%РЎРѕР·РґР°РЅРёРµ РґРѕРєСѓРјРµРЅС‚Р°
 commands{end+1,1} = 'corelDraw = CLOutput.CorelDraw(false);';
 commands{end+1,1} = 'application = corelDraw.Application;';
 commands{end+1,1} = strcat('corelDraw.openDocument(''', fullfile(dial_root, 'Images\\sample.cdr'), ''');');
-commands{end+1,1} = 'drawer = CLOutput.Drawer(corelDraw);'; %Запускается только при наличии открытого документа
+commands{end+1,1} = 'drawer = CLOutput.Drawer(corelDraw);'; %Р—Р°РїСѓСЃРєР°РµС‚СЃСЏ С‚РѕР»СЊРєРѕ РїСЂРё РЅР°Р»РёС‡РёРё РѕС‚РєСЂС‹С‚РѕРіРѕ РґРѕРєСѓРјРµРЅС‚Р°
 
-%В формате cdr
+%Р’ С„РѕСЂРјР°С‚Рµ cdr
 device=strcat('device',sdev);
 mode=getModeV(device);
 scale1=mode{2};
@@ -520,12 +525,12 @@ snumber = num2str(n);
 commands{end+1,1} = strcat('corelDraw.saveDocumentAs(''', fullfile(dial_root, strcat('Output\\', snumber, '_v.cdr')), ''');');
 commands{end+1,1} = strcat('corelDraw.closeDocument();');
 
-%Выполнение всех команд
+%Р’С‹РїРѕР»РЅРµРЅРёРµ РІСЃРµС… РєРѕРјР°РЅРґ
 commands = commands(~cellfun('isempty',commands));
 tic;
 
-% если 1 - печатаются все выполняемые команды, если 0 - только в случае
-% возникновения ошибки
+% РµСЃР»Рё 1 - РїРµС‡Р°С‚Р°СЋС‚СЃСЏ РІСЃРµ РІС‹РїРѕР»РЅСЏРµРјС‹Рµ РєРѕРјР°РЅРґС‹, РµСЃР»Рё 0 - С‚РѕР»СЊРєРѕ РІ СЃР»СѓС‡Р°Рµ
+% РІРѕР·РЅРёРєРЅРѕРІРµРЅРёСЏ РѕС€РёР±РєРё
 verbose_evaluating = 0;
 for i=1:1:size(commands,1)
     if verbose_evaluating 
@@ -545,7 +550,7 @@ end
 %disp(i);
 end
 toc;
-%Сохранение номера шкалы
+%РЎРѕС…СЂР°РЅРµРЅРёРµ РЅРѕРјРµСЂР° С€РєР°Р»С‹
 readKeys = {'scale','id','name'}; 
 readSet = inifile('settings.ini','read',readKeys); 
 n=str2num(readSet{1}); 
